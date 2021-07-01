@@ -213,6 +213,7 @@ sds sdsMakeRoomFor(sds s, size_t addlen) {
 
     len = sdslen(s);
     sh = (char*)s-sdsHdrSize(oldtype);
+    // 新扩容的长度为新增加的长度与原长度之和的二倍，但是如果之和本身已经大于1024*1024，则增加1024*1024
     newlen = (len+addlen);
     if (newlen < SDS_MAX_PREALLOC)
         newlen *= 2;
